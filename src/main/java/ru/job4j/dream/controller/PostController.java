@@ -8,7 +8,6 @@ import ru.job4j.dream.store.PostStore;
 
 @Controller
 public class PostController {
-
     private final PostStore store = PostStore.instOf();
 
     @GetMapping("/posts")
@@ -16,5 +15,4 @@ public class PostController {
         model.addAttribute("posts", store.findAll());
         return "posts";
     }
-
 }
