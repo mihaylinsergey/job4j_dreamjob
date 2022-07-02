@@ -49,16 +49,21 @@ public class Candidate {
         this.created = created;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Candidate candidate = (Candidate) o;
-        return id == candidate.id && Objects.equals(name, candidate.name) && Objects.equals(description, candidate.description) && Objects.equals(created, candidate.created);
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        if (!super.equals(object)) {
+            return false;
+        }
+        Candidate candidate = (Candidate) object;
+        return id == candidate.id;
     }
 
-    @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, created);
+        return Objects.hash(super.hashCode(), id);
     }
 }

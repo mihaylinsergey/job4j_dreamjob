@@ -9,7 +9,6 @@ public class Post {
     private  String description;
     private LocalDate created;
 
-
     public Post(int id, String name, String description, LocalDate created) {
         this.id = id;
         this.name = name;
@@ -51,8 +50,12 @@ public class Post {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Post post = (Post) o;
         return id == post.id;
     }
