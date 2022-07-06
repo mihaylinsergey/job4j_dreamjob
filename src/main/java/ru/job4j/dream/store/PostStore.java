@@ -33,4 +33,8 @@ public class PostStore {
         posts.putIfAbsent(count, post);
         count.getAndIncrement();
     }
+
+    public Post findById(int id) {
+        return posts.get(id);
+    }
 }
