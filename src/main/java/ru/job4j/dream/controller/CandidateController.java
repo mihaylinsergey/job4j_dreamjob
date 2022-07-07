@@ -41,4 +41,10 @@ public class CandidateController {
         model.addAttribute("candidate", store.findById(id));
         return "updateCandidate";
     }
+
+    @GetMapping("/updateCandidate")
+    public String updatePost(@ModelAttribute Candidate candidate) {
+        store.update(candidate);
+        return "redirect:/candidates";
+    }
 }
