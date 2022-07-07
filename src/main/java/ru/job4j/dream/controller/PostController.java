@@ -35,4 +35,10 @@ public class PostController {
         model.addAttribute("post", store.findById(id));
         return "updatePost";
     }
+
+    @GetMapping("/updatePost")
+    public String updatePost(@ModelAttribute Post post) {
+        store.update(post);
+        return "redirect:/posts";
+    }
 }

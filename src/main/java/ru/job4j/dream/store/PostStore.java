@@ -16,9 +16,9 @@ public class PostStore {
     private AtomicInteger count;
 
     private PostStore() {
-        posts.put(new Integer(1), new Post(1, "Junior Java Job", "description_1", LocalDate.now()));
-        posts.put(new Integer(2), new Post(2, "Middle Java Job", "description_2", LocalDate.now().plusDays(1)));
-        posts.put(new Integer(3), new Post(3, "Senior Java Job", "description_3", LocalDate.now().minusDays(1)));
+        posts.put(1, new Post(1, "Junior Java Job", "description_1", LocalDate.now()));
+        posts.put(2, new Post(2, "Middle Java Job", "description_2", LocalDate.now().plusDays(1)));
+        posts.put(3, new Post(3, "Senior Java Job", "description_3", LocalDate.now().minusDays(1)));
     }
 
     public static PostStore instOf() {
@@ -36,5 +36,9 @@ public class PostStore {
 
     public Post findById(int id) {
         return posts.get(id);
+    }
+
+    public void update(Post post) {
+        posts.replace(post.getId(), post);
     }
 }
