@@ -7,19 +7,11 @@ public class Candidate {
 
     private int id;
     private String name;
-    private  String description;
-    private LocalDate created;
+    private byte[] photo;
 
     public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Candidate(int id, String name, String description, LocalDate created) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.created = created;
     }
 
     public int getId() {
@@ -34,27 +26,19 @@ public class Candidate {
         return name;
     }
 
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDate created) {
-        this.created = created;
-    }
-
-    public boolean equals(Object object) {
+      public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
