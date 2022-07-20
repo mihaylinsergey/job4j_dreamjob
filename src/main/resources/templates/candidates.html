@@ -19,15 +19,17 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Работа мечты</a>
+        <a class="navbar-brand" href="#">Работа мечты!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
-                <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
+                <a class="nav-item nav-link" th:href="@{/formAddPost}">Добавить вакансию</a>
+                <a class="nav-item nav-link active" th:href="@{/candidates}">Кандидаты</a>
+                <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
             </div>
         </div>
     </nav>
@@ -36,27 +38,36 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Фото</th>
                 <th scope="col">Имя</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Дата</th>
+                <th scope="col">Информация о кандидате</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Город</th>
+
             </tr>
             </thead>
             <tbody>
             <tr th:each="candidate: ${candidates}">
                 <td th:text="${candidate.id}"></td>
                 <td>
+                    <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}">
+                    <span th:text="${candidate.name}"></span>
+                </td>
+                <td>
                     <a th:href="@{|/formUpdateCandidate/${candidate.id}|}">
                         <i class="fa fa-edit"></i>
                     </a>
                     <span th:text="${candidate.name}"></span>
+                    <span th:if="${candidate.visible}">
+            <i class="fa fa-check-square-o"></i>
+        </span>
+                    <span th:if="${!candidate.visible}">
+            <i class="fa fa-square-o"></i>
+        </span>
                 </td>
-            </tr>
-            <tr th:each="candidate: ${candidates}">
-                <td th:text="${candidate.id}"></td>
-                <td>
-                    <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}">
-                    <span th:text="${candidate.name}"></span>
-                </td>
+                <td th:text="${candidate.description}"></td>
+                <td th:text="${candidate.created}"></td>
+                <td th:text="${candidate.city.name}"></td>
             </tr>
             </tbody>
         </table>

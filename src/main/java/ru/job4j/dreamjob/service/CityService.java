@@ -1,13 +1,12 @@
-package ru.job4j.dream.service;
+package ru.job4j.dreamjob.service;
 
 import org.springframework.stereotype.Service;
-import ru.job4j.dream.model.City;
-
+import ru.job4j.dreamjob.model.City;
 import java.util.*;
 
 @Service
 public class CityService {
-    private Map<Integer, City> cities = new HashMap<Integer, City>();
+    private Map<Integer, City> cities = new HashMap<>();
 
     public CityService() {
         cities.put(1, new City(1, "Москва"));

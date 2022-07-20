@@ -15,7 +15,7 @@
   <name>Job4j Dream Job</name>
 
   <properties>
-    <java.version>18</java.version>
+    <java.version>17</java.version>
   </properties>
 
   <dependencies>
@@ -23,6 +23,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -34,18 +35,27 @@
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
 
+      <dependency>
+          <groupId>net.jcip</groupId>
+          <artifactId>jcip-annotations</artifactId>
+          <version>1.0</version>
+          <scope>compile</scope>
+      </dependency>
+
+    <!-- https://mvnrepository.com/artifact/net.jcip/jcip-annotations -->
     <dependency>
       <groupId>net.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
       <version>1.0</version>
-      <scope>compile</scope>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -53,7 +63,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${project.parent.version}</version>
       </plugin>
     </plugins>
   </build>
