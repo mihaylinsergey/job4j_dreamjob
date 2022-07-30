@@ -13,7 +13,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class CandidateStore {
 
-
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
     private AtomicInteger count = new AtomicInteger(3);
 
