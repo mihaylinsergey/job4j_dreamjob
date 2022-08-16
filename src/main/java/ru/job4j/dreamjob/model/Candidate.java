@@ -100,4 +100,13 @@ public class Candidate implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Candidate{"
+               + "id=" + id
+               + ", name='" + name + '\''
+               + ", city=" + city
+               + '}';
+    }
 }
