@@ -26,6 +26,7 @@ public class UserDBStore {
     }
 
     public Optional<User> add(User user) {
+        Optional<User> rsl = Optional.empty();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "INSERT INTO users (email, password) VALUES (?, ?)",
@@ -39,10 +40,11 @@ public class UserDBStore {
                     user.setId(id.getInt(1));
                 }
             }
+            rsl = Optional.ofNullable(user);
         } catch (SQLException e) {
             LOG.error("Error!", e);
-            user = null;
+            return rsl;
         }
-        return Optional.ofNullable(user);
+        return rsl;
     }
 }
