@@ -40,10 +40,9 @@ public class UserDBStore {
                     user.setId(id.getInt(1));
                 }
             }
-            rsl = Optional.ofNullable(user);
+            rsl = Optional.of(user);
         } catch (SQLException e) {
             LOG.error("Error!", e);
-            return rsl;
         }
         return rsl;
     }
