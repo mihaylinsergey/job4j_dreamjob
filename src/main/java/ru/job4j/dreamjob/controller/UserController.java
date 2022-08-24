@@ -25,7 +25,13 @@ public class UserController {
     }
 
     @GetMapping("/formRegistration")
-    public String formRegistration(Model model) {
+    public String formRegistration(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setEmail("Гость");
+        }
+        model.addAttribute("user", user);
         model.addAttribute("user", new User(0, "Заполните поле"));
         return "formRegistration";
     }
