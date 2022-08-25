@@ -19,6 +19,8 @@ import ru.job4j.dreamjob.service.PostService;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static ru.job4j.dreamjob.utility.GetUserFromView.getUserFromView;
+
 @ThreadSafe
 @Controller
 public class CandidateController {
@@ -33,24 +35,14 @@ public class CandidateController {
 
     @GetMapping("/candidates")
     public String candidates(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setEmail("Гость");
-        }
-        model.addAttribute("user", user);
+        getUserFromView(model, session);
         model.addAttribute("candidates", candidateService.findAll());
         return "candidates";
     }
 
     @GetMapping("/formAddCandidate")
     public String addPCandidate(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setEmail("Гость");
-        }
-        model.addAttribute("user", user);
+        getUserFromView(model, session);
         model.addAttribute("candidate", new Candidate(0, "Заполните поле"));
         model.addAttribute("cities", cityService.getAllCities());
         return "addCandidate";
@@ -68,12 +60,7 @@ public class CandidateController {
 
     @GetMapping("/formUpdateCandidate/{postId}")
     public String formUpdateCandidate(Model model, @PathVariable("postId") int id, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setEmail("Гость");
-        }
-        model.addAttribute("user", user);
+        getUserFromView(model, session);
         model.addAttribute("candidate", candidateService.findById(id));
         model.addAttribute("cities", cityService.getAllCities());
         return "updateCandidate";
@@ -81,12 +68,7 @@ public class CandidateController {
 
     @PostMapping("/updateCandidate")
     public String updateCandidate(@ModelAttribute Candidate candidate, Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setEmail("Гость");
-        }
-        model.addAttribute("user", user);
+        getUserFromView(model, session);
         int cityId = candidate.getCity().getId();
         candidate.setCity(cityService.findById(cityId));
         candidateService.update(candidate);

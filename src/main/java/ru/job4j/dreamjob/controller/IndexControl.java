@@ -7,17 +7,14 @@ import ru.job4j.dreamjob.model.User;
 
 import javax.servlet.http.HttpSession;
 
+import static ru.job4j.dreamjob.utility.GetUserFromView.getUserFromView;
+
 @Controller
 public class IndexControl {
 
     @GetMapping("/index")
     public String index(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setEmail("Гость");
-        }
-        model.addAttribute("user", user);
+        getUserFromView(model, session);
         return "index";
     }
 }

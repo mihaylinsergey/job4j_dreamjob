@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
+import static ru.job4j.dreamjob.utility.GetUserFromView.getUserFromView;
 
 @ThreadSafe
 @Controller
@@ -26,12 +26,7 @@ public class UserController {
 
     @GetMapping("/formRegistration")
     public String formRegistration(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setEmail("Гость");
-        }
-        model.addAttribute("user", user);
+        getUserFromView(model, session);
         model.addAttribute("user", new User(0, "Заполните поле"));
         return "formRegistration";
     }
