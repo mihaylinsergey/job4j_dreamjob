@@ -19,10 +19,10 @@ public class AuthFilter implements Filter {
         String uri = req.getRequestURI();
         if (uri.endsWith("loginPage")
                 || uri.endsWith("login")
-              /*  || uri.endsWith("/formRegistration")
+                || uri.endsWith("/formRegistration")
                 || uri.endsWith("/fail")
                 || uri.endsWith("/success")
-                || uri.endsWith("/registration")*/) {
+                || uri.endsWith("/registration")) {
             chain.doFilter(req, res);
             return;
         }
